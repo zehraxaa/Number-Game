@@ -1,0 +1,78 @@
+package com.zehra;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Game {
+
+	public static void main(String[] args) { 
+		greet();
+		getGuesses();
+		sayGoodbye();
+	}
+
+
+public static void greet ()
+{	Scanner scanner = new Scanner(System.in);
+	final String GAME_NAME = "Sayi Tahmini";
+	System.out.println(GAME_NAME + " Oyununa Hosgeldin ");
+	System.out.println("Ismin nedir?");
+	String userName = scanner.nextLine();
+	System.out.println("Merhaba " + firstLetterUpperCase(userName));
+}
+
+public static String firstLetterUpperCase(String value) {
+	
+	return value.substring(0, 1).toUpperCase() + value.substring(1, value.length());
+}
+
+public static void getGuesses() {
+	int secretNumber = 1 + (int)(Math.random()*10);
+	var guesses = new ArrayList<Integer>();
+	System.out.println("1 ile 10 arasinda bir sayi tahmin et");
+	var scanner = new Scanner(System.in);
+	int guess = 0;
+	int i = 0;
+	while (guess != secretNumber) {
+		guess = scanner.nextInt();
+		getGuessResults(secretNumber, guess, guesses);
+		guesses.add(guess);
+		i++;
+	}
+
+	System.out.println("Gizli Sayi: " + secretNumber + "\n" + i + ". Tahmininde bildin tebrikler\n" + "Tahminlerin: " + guesses);
+
+}
+
+public static void getGuessResults(int secretNumber, int guess, ArrayList<Integer> guesses) {
+
+	if (guesses.contains(guess))
+		System.out.println("Bunu daha once girmistin");
+	if (secretNumber < guess)
+		System.out.println("Asagi");
+	else if (secretNumber > guess)
+		System.out.println("Yukari");
+	else 
+		System.out.println("Buldun :D\n");
+}
+
+public static void sayGoodbye() {
+	System.out.println("\nSonra gorusuruz!");
+}
+
+
+
+
+
+
+
+}
+		
+
+
+
+	/*	String upperCaseWelcomeMessage = welcomeMessage.toUpperCase();
+		System.out.println(upperCaseWelcomeMessage);
+		boolean endsWithDot = welcomeMessage.endsWith(" ");
+		System.out.println(endsWithDot); */
